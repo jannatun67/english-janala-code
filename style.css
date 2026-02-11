@@ -4,3 +4,57 @@
 .font-bangla{
  font-family: "Hind Siliguri", sans-serif;
 }
+
+ body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Three.js Canvas */
+        #three-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Content overlay */
+        .content-overlay {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Floating animation for text */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Glow effect for buttons */
+        .glow-on-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .glow-on-hover:hover {
+            box-shadow: 0 0 15px rgba(0, 188, 255, 0.5);
+        }
+        
+        /* Pulse animation for logo */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }

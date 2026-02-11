@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/assets/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-
+    <link rel="stylesheet" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Exo+2:ital,wght@0,100..900;1,100..900&family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rancho&family=Slabo+27px&family=Sora:wght@100..800&display=swap" rel="stylesheet">
@@ -16,73 +16,95 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <link rel="stylesheet" href="/style.css">
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    
 </head>
 <body>
-    <header>
-        <div class="navbar bg-base-100 shadow-sm">
-  <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-      </div>
-      <ul
-        tabindex="-1"
-        class="menu space-y-4 menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-       <li>
-      <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-circle-question"></i> RAQ</a>
-     </li>
-     <li>
-      <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Learn</a>
-     </li>
-     <li>
-      <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-     </li>
-      </ul>
-    </div>
-    <a href="" class="flex items-center gap-1">
-      <span class="text-lg font-bold">English</span>
-      <img src="/assets/logo.png" alt="logo">
-      <span class="font-bangla font-semibold text-lg">জানালা</span>
-    </a>
-  </div>
-  <div class="navbar-end hidden lg:flex">
-    <ul class="menu menu-horizontal px-1 space-x-4">
-     <li>
-      <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-circle-question"></i> RAQ</a>
-     </li>
-     <li>
-      <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-book-open"></i>Learn</a>
-     </li>
-     <li>
-      <a href="" class="btn btn-outline btn-primary"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-     </li>
-    </ul>
-  </div>
-  
-</div>
-    </header>
+    <!-- Three.js Background Canvas -->
+    <canvas id="three-bg"></canvas>
+    
+    <div class="content-overlay">
+        <header>
+            <div class="navbar bg-base-100 shadow-sm">
+                <div class="navbar-start">
+                    <div class="dropdown">
+                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> 
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> 
+                            </svg>
+                        </div>
+                        <ul
+                            tabindex="-1"
+                            class="menu space-y-4 menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            <li>
+                                <a href="" class="btn btn-outline btn-primary glow-on-hover"><i class="fa-solid fa-circle-question"></i> RAQ</a>
+                            </li>
+                            <li>
+                                <a href="" class="btn btn-outline btn-primary glow-on-hover"><i class="fa-solid fa-book-open"></i>Learn</a>
+                            </li>
+                            <li>
+                                <a href="" class="btn btn-outline btn-primary glow-on-hover"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="" class="flex items-center gap-1">
+                        <span class="text-lg font-bold">English</span>
+                        <img src="/assets/logo.png" alt="logo" class="pulse">
+                        <span class="font-bangla font-semibold text-lg">জানালা</span>
+                    </a>
+                </div>
+                <div class="navbar-end hidden lg:flex">
+                    <ul class="menu menu-horizontal px-1 space-x-4">
+                        <li>
+                            <a href="" class="btn btn-outline btn-primary glow-on-hover"><i class="fa-solid fa-circle-question"></i> RAQ</a>
+                        </li>
+                        <li>
+                            <a href="" class="btn btn-outline btn-primary glow-on-hover"><i class="fa-solid fa-book-open"></i>Learn</a>
+                        </li>
+                        <li>
+                            <a href="" class="btn btn-outline btn-primary glow-on-hover"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
 
-    <section>
-      <div class="hero  min-h-screen">
-  <div class="hero-content flex-col lg:flex-row-reverse">
-    <img
-      src="/assets/hero-student.png"
-      class=" "
-    />
-    <div>
-      <h1 class="text-4xl font-bold"> <span class="text-[#00BCFF]">English</span> is Easy!!</h1>
-      <p class="py-6 font-bangla">
-       আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ
-      </p>
-      <div class="space-y-4 pb-4">
-        <input type="text" placeholder="Enter Your Name" class="input" />
-        <input type="text" placeholder=".................." class="input" />
-      </div>
-      <button class="btn btn-primary">Get Started</button>
+        <section>
+            <div class="hero min-h-screen">
+                <div class="hero-content flex-col lg:flex-row-reverse">
+                    <img
+                        src="/assets/hero-student.png"
+                        class="floating"
+                        alt="Student learning English"
+                    />
+                    <div>
+                        <h1 class="text-4xl font-bold floating"> <span class="text-[#00BCFF]">English</span> is Easy!!</h1>
+                        <p class="py-6 font-bangla">
+                            আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ
+                        </p>
+                        <div class="space-y-4 pb-4">
+                            <input type="text" placeholder="Enter Your Name" class="input input-bordered w-full max-w-xs" />
+                            <input type="text" placeholder=".................." class="input input-bordered w-full max-w-xs" />
+                        </div>
+                        <button class="btn btn-primary glow-on-hover">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-20">
+          <div>
+             <h1 class="text-4xl font-bold floating text-center"> <span class="text-[#00BCFF]">Let's</span>Learn Vocabularies</h1>
+          </div>
+        </section>
+
+
     </div>
-  </div>
-</div>
-    </section>
+
+    <script src="./script/index.js"></script>
+   
+   
 </body>
 </html>
