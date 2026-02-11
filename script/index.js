@@ -4,6 +4,62 @@ const loadLessons = () => {
         .then(json => displayLesson(json.data))
 }
 
+const LoadLevelWord =(id)=>{
+    const url =`https://openapi.programming-hero.com/api/level/${id}`
+     fetch(url)
+     .then(res=> res.json())
+     .then(data => displayLevelWord(data.data))
+}
+
+// {
+//     "id": 100,
+//     "level": 2,
+//     "word": "Love",
+//     "meaning": null,
+//     "pronunciation": "লভ"
+// }
+
+const displayLevelWord= (words)=>{
+   const wordContainer= document.getElementById("word-container");
+   wordContainer.innerHTML="";
+
+   words.forEach(word =>{
+    console.log(word);
+    const card = document.createElement("div");
+    card.innerHTML=`
+      <!-- Card Container -->
+            <div class="">      
+        <div class="bg-gray-100 py-12 px-5 rounded-lg shadow-md relative flex flex-col items-center justify-center text-center">
+    <!-- Title -->
+    <h1 class="text-4xl font-bold mb-2">${word?.word}</h1>
+    <!-- Subtitle -->
+    <p class="text-xl text-gray-700 mb-4">Meaning /Pronounciation</p>
+    <!-- Bangla Meaning -->
+    <p class="text-2xl font-semibold font-bangla text-gray-600">
+      "${word?.meaning} / ${word?.pronunciation}"
+    </p>
+    <!-- Bottom Left Info Button -->
+    <div class="absolute  bottom-6 left-3">
+      <button class="bg-gray-300 hover:bg-gray-400 w-12 h-12 rounded-xl flex items-center justify-center text-gray-700 text-[16px]">
+        <i class="fa-solid fa-info"></i>
+      </button>
+    </div>
+    <!-- Bottom Right Sound Button -->
+    <div class="absolute bottom-6 right-3">
+      <button class="bg-gray-300 hover:bg-gray-400 w-12 h-12 rounded-xl flex items-center justify-center text-gray-700 text-[16px]">
+        <i class="fa-solid fa-volume-high"></i>
+      </button>
+    </div>
+
+  </div>
+
+            </div>
+    `
+    wordContainer.appendChild(card)
+   })
+}
+
+
 const displayLesson = (lessons) => {
     const levelContainer = document.getElementById("level-container");
     levelContainer.innerHTML = "";
@@ -13,7 +69,7 @@ const displayLesson = (lessons) => {
         const btnDiv = document.createElement("div");
 
         btnDiv.innerHTML = `
-        <button class="btn btn-outline btn-primary glow-on-hover">
+        <button onclick="LoadLevelWord(${lesson.level_no})" class="btn btn-outline btn-primary glow-on-hover">
             <i class="fa-solid fa-book-open"></i>
             Lesson-${lesson.level_no}
         </button>
